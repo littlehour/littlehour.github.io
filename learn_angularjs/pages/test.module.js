@@ -1,0 +1,1 @@
+angular.module('myApp',['test1Module']);

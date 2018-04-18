@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html ng-app="myApp" lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" type="text/css" href="css/angular.css" />
+  <title>angularjs</title>
+</head>
+<body>
+  <span id="drag" draggable="true">drag me</span>
+  <span draggable="true">drag</span>
+  <div ng-controller="DoubleCtrl">
+    <input type='number' ng-model="num" />翻倍后为:{{double(num)}}
+  </div>
+  <div ng-controller="SpiceCtrl">
+    <input type="text" ng-model='customSpicy' />
+    <button ng-click="spicy('chili')">Chili</button>
+    <button ng-click="spicy(customSpicy)">custom spicy</button>
+    <p>this food is {{spice}} spicy!</p>
+  </div>
+  <!-- <div ng-app="scopeInhertance" class="scope"> -->
+  <div class="scope">
+    <div ng-controller="MainCtrl">
+      Good {{time()}} {{name()}}!
+      <div ng-controller="ChildCtrl">
+        Good {{time()}} {{name()}}!
+        <div ng-controller="GrandChildCtrl">
+          Good {{time()}} {{name()}}!
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div ng-controller="ModelController">
+    your name is:<input type="text" ng-model="username" />
+    <button ng-click="sayHello()">greet</button>
+    <p>{{greeting}}</p>
+  </div>
+
+  <div id="simple" ng-controller="MyController">
+    <p>Let's try this simple notify service, injected into the controller...</p>
+    <input ng-init="message='test'" ng-model="message" >
+    <button ng-click="callNotify(message);">NOTIFY</button>
+    <p>(you have to click 3 times to see an alert)</p>
+  </div>
+
+  <div ng-controller="ExampleController" class="expressions">
+    Expression:
+    <input type='text' ng-model="expr" size="80"/>
+    <button ng-click="addExp(expr)">Evaluate</button>
+    <ul>
+     <li ng-repeat="expr in exprs track by $index">
+       [ <a href="" ng-click="removeExp($index)">X</a> ]
+       <code>{{expr}}</code> => 
+       <span ng-bind="$parent.$eval(expr)"></span>
+      </li>
+    </ul>
+  </div>
+
+  <!-- angularjs表单 -->
+  <div ng-controller="ExampleController1">
+    <form name="form" novalidate class="simple-form">
+      <label>Name: <input type="text" name="user" ng-model="user.name" required /></label><br />
+      <div ng-show="form.$submitted||form.user.$touched">
+        <div ng-show="form.user.$error.required">tell me your name!</div>
+      </div>
+      <label>E-mail: <input type="email" name="email" ng-model="user.email" ng-model-options="{updateOn:'default blur',debounce:{default:500,blur:500}}" required /></label><br />
+      <div ng-show="form.$submitted||form.email.$touched">
+        <div ng-show="form.email.$error.required">tell me your email</div>
+        <div ng-show="form.email.$error.email">email input invalid</div>
+      </div>
+      <div>{{user.email}}</div>
+      Best Editor: <label><input type="radio" ng-model="user.preference" value="vi" />vi</label>
+      <label><input type="radio" ng-model="user.preference" value="emacs" />emacs</label><br />
+      <input type="button" ng-click="reset()" value="Reset" />
+      <input type="submit" ng-click="update(user)" value="Save" />
+
+      <div>
+        <label>
+        Size (integer 0 - 10):
+        <input type="number" ng-model="size" name="size"
+               min="0" max="10" integer />{{size}}</label><br />
+        <span ng-show="form.size.$error.integer">The value is not a valid integer!</span>
+        <span ng-show="form.size.$error.min || form.size.$error.max">
+          The value must be in range 0 to 10!</span>
+      </div>
+    
+      <div>
+        <label>
+        Username:
+        <input type="text" ng-model="name" name="name" username />{{name}}</label><br />
+        <span ng-show="form.name.$pending.username">Checking if this name is available...</span>
+        <span ng-show="form.name.$error.username">This username is already taken!</span>
+      </div>
+    </form>
+    <pre>user = {{user | json}}</pre>
+    <pre>master = {{master | json}}</pre>
+
+    <p>{{undefinedValue}}</p>
+
+    <form>
+      <input type="text" pattern="[ambc]" />
+      <input type="text" ng-model="regTest" ng-pattern="reg1" />{{regTest}}
+      <input type="text" ng-pattern="'[abc]'" />
+      <button type="submit">submit</button>
+    </form>
+
+    <button ng-click="testContext()">testContext</button>
+  </div>
+
+  <div contenteditable="true">aaa</div>
+
+
+  <div ng-controller="NaomiController">
+    <my-customer></my-customer>
+  <!-- </div>
+  <hr>
+  <div ng-controller="IgorController"> -->
+    <my-customer></my-customer>
+  </div>
+
+  <div ng-controller="Controller1">
+    Date format: <input ng-model="format"> <hr/>
+    Current time is: <span my-current-time="format"></span>
+  </div>
+
+
+  <my-tabs>
+    <my-pane title="Hello">
+      <p>Lorem ipsum dolor sit amet</p>
+    </my-pane>
+    <my-pane title="World">
+      <em>Mauris elementum elementum enim at suscipit.</em>
+      <p><a href ng-click="i = i + 1">counter: {{i || 0}}</a></p>
+    </my-pane>
+  </my-tabs>
+  <script src="js/angular.js"></script>
+  <script src="js/script.js"></script>
+</body>
+</html>

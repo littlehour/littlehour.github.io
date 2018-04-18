@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html ng-app="myApp" lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>test router</title>
+</head>
+<body>
+
+    <a href="#/test1">test1</a>
+    <a href="#/test2">test2</a>
+    <div ng-view></div>
+
+    <script src="../js/angular.js"></script>
+    <script src="../js/angular-route.min.js"></script>
+
+    <script src="test2/test2Ctrl.js"></script>
+    <script src="test1/test1Ctr.js"></script>
+
+    <script src="test2/test2.module.js"></script>
+    <script src="test1/test1.module.js"></script>
+    <script src="test.module.js"></script>
+</body>
+</html>

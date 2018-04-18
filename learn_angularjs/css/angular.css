@@ -1,0 +1,13 @@
+#drag{
+    border: 1px solid red;
+    position: relative;
+    cursor: pointer;
+}
+#drag~span{
+    position: relative;
+    cursor: pointer;
+}
+.scope div{
+    border: 1px solid rgb(110, 136, 61);
+    padding: 20px;
+}
