@@ -113,11 +113,15 @@
 
 
   <div ng-controller="NaomiController">
-    <my-customer></my-customer>
+    <!-- <input ng-model="customer1.name" data='{"a":"5"}' id="input" type="text" /> -->
+    <input ng-model="custom" data='{"a":"5"}' id="input" type="text" />
+    <!-- <my-customer customer="{name:'cc',address:'cc address'}"></my-customer> -->
+    <my-customer custom="{{custom}}"></my-customer>
   <!-- </div>
   <hr>
   <div ng-controller="IgorController"> -->
-    <my-customer></my-customer>
+    <input ng-model="customer2.name" type="text" />
+    <my-customer customer="customer2"></my-customer>
   </div>
 
   <div ng-controller="Controller1">

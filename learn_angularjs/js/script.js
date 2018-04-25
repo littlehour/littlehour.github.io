@@ -199,11 +199,21 @@ angular.module('ExampleController1',[]).controller('ExampleController1',function
 
 
   angular.module('docsScopeProblemExample', [])
-  .controller('NaomiController', ['$scope', function($scope) {
-    $scope.customer = {
-      name: 'Naomi',
+  .controller('NaomiController', ['$scope','$window', function($scope,$window) {
+    $scope.customer1 = {
       address: '1600 Amphitheatre'
     };
+    Object.defineProperty($scope.customer1,'name',{
+      writable:false,
+      value:'customer1'
+    });
+
+    $scope.customer2={
+      name:'customer2',
+      address:'customer2 address'
+    };
+
+    $scope.custom="custom";
   }])
 //   .controller('IgorController', ['$scope', function($scope) {
 //     $scope.customer = {
@@ -214,7 +224,11 @@ angular.module('ExampleController1',[]).controller('ExampleController1',function
   .directive('myCustomer', function() {
     return {
       restrict: 'E',
-      templateUrl: 'my-customer.html'
+      templateUrl: 'my-customer.html',
+      scope:{
+        customer:'=',
+        custom:'@'
+      }
     };
   });
 
