@@ -1,3 +1,20 @@
-Name: {{customer.name}} Address: {{customer.address}} custom:{{custom}};
-<!-- <input ng-model="customer.name" type="text" /> -->
-<input ng-model="custom" type="text" />
+<!-- <div ng-init="oneWay={name:'oneWay',address:'oneWay address'}"> -->
+<div>
+    <div>
+        string-one-way:{{custom}}
+        <input ng-model="custom" type="text" />
+    </div>
+    <div>
+        bidirectional-binding:{{customer1.name}}&amp;{{customer1.address}}
+        <input ng-model="customer1.name" type="text" />
+    </div>
+    <div>
+        one-way:{{customer2.name}}&amp;{{customer2.address}}
+        <input ng-model="customer2.name" type="text" />
+    </div>
+    <div>
+        expression:{{expression({a:1,b:2})}}
+    </div>
+    <!-- <input ng-model="custom" type="text" /> -->
+    <!-- <input ng-model="oneWay" type="text" /> -->
+</div>

@@ -116,12 +116,23 @@
     <!-- <input ng-model="customer1.name" data='{"a":"5"}' id="input" type="text" /> -->
     <input ng-model="custom" data='{"a":"5"}' id="input" type="text" />
     <!-- <my-customer customer="{name:'cc',address:'cc address'}"></my-customer> -->
-    <my-customer custom="{{custom}}"></my-customer>
+    <input ng-model="customer1.name" type="text" />
+    <input ng-model="customer2.name" type="text" />
+    <my-customer string-one-way="{{custom}}" bidirectional-binding="customer1" one-way="customer2" expression="sum=a+b"></my-customer>
+    <input type="text" ng-model="sum" />
   <!-- </div>
   <hr>
   <div ng-controller="IgorController"> -->
-    <input ng-model="customer2.name" type="text" />
-    <my-customer customer="customer2"></my-customer>
+    <!-- <input ng-model="customer2.name" type="text" />
+    <my-customer customer="customer2"></my-customer> -->
+
+    <!-- <input ng-model="custom" type="text" />
+    <my-customer one-way="custom"></my-customer> -->
+    <input ng-model="testLink" type="text" />
+    <div link-test="testLink"></div>
+
+    <input ng-model="transclude" />
+    <test-transclude>test {{transclude}}</test-transclude>
   </div>
 
   <div ng-controller="Controller1">
@@ -139,6 +150,11 @@
       <p><a href ng-click="i = i + 1">counter: {{i || 0}}</a></p>
     </my-pane>
   </my-tabs>
+
+  <div ng-controller="testProvider as provider">
+    {{provider.test}}<br />
+    {{provider.testFactory}}
+  </div>
   <script src="js/angular.js"></script>
   <script src="js/script.js"></script>
 </body>

@@ -1,4 +1,4 @@
-angular.module('myApp',['drag','double','spicyApp','scopeInhertance','model','myServiceModule','expressionExample','ExampleController1','docsScopeProblemExample','controller1','docsTabsExample']);
+angular.module('myApp',['drag','double','spicyApp','scopeInhertance','model','myServiceModule','expressionExample','ExampleController1','docsScopeProblemExample','controller1','docsTabsExample','testProvider']);
 angular.module('drag',[]).directive('draggable',function($document){
     // console.log($document);//html
     return function(scope,element,attr){
@@ -200,20 +200,31 @@ angular.module('ExampleController1',[]).controller('ExampleController1',function
 
   angular.module('docsScopeProblemExample', [])
   .controller('NaomiController', ['$scope','$window', function($scope,$window) {
-    $scope.customer1 = {
+    $scope.customer = {
       address: '1600 Amphitheatre'
     };
-    Object.defineProperty($scope.customer1,'name',{
+    Object.defineProperty($scope.customer,'name',{
       writable:false,
-      value:'customer1'
+      value:'customer'
     });
+
+    $scope.customer1={
+      name:'customer1',
+      address:'customer1 address'
+    };
+
+    $scope.custom="custom";
 
     $scope.customer2={
       name:'customer2',
       address:'customer2 address'
     };
 
-    $scope.custom="custom";
+    $scope.sum=0;
+
+    $scope.testLink="test";
+
+    $scope.transclude="transclude";
   }])
 //   .controller('IgorController', ['$scope', function($scope) {
 //     $scope.customer = {
@@ -226,10 +237,37 @@ angular.module('ExampleController1',[]).controller('ExampleController1',function
       restrict: 'E',
       templateUrl: 'my-customer.html',
       scope:{
-        customer:'=',
-        custom:'@'
+        custom:'@stringOneWay',
+        customer1:'=bidirectionalBinding',
+        customer2:'<oneWay',
+        expression:'&'
       }
     };
+  }).directive('linkTest',function(){
+    return function(scope,ele,attrs){
+      var txt;
+      scope.$watch(attrs.linkTest,function(value){
+        // console.log(value);
+        // txt=value;
+        ele.html(value);
+      });
+      // ele.html(testlink);
+    }
+  }).directive('testTransclude',function(){
+    return {
+      transclude:true,
+      restrict:'E',
+      scope:{
+      },
+      template:'<p>{{transclude}}<p ng-transclude></p></p>',
+      link:function(scope,ele,attrs){
+        scope.transclude="sss";
+        ele.on('click',function(){
+          alert('test listening');
+        })
+        console.log(scope);
+      }
+    }
   });
 
   angular.module('controller1',[]).controller('Controller1', ['$scope', function($scope) {
@@ -309,5 +347,15 @@ angular.module('ExampleController1',[]).controller('ExampleController1',function
     templateUrl: 'my-pane.html'
   };
 });
+
+angular.module('testProvider',[])
+.value('test','test value recipe')
+.controller('testProvider',function testProvider(test,testFactory){
+  this.test=test;
+  this.testFactory=testFactory;
+}).factory('testFactory',function(test,$window){
+  $window.localStorage.setItem('secret','secret');
+  return test+' '+$window.localStorage.getItem('secret');
+})
 
   
