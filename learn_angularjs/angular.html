@@ -155,7 +155,17 @@
     {{provider.test}}<br />
     {{provider.testFactory}}
   </div>
-  <script src="js/angular.js"></script>
+
+  <form>
+    <custom-checkbox role="checkbox" ng-model="checked" ng-disabled="!checked" required ng-show="!checked" aria-label="Custom checkbox" show-attrs>
+      Custom checkbox
+    </custom-checkbox>
+  </form>
+  <hr />
+  <b>Is checked:</b> {{ !!checked }}
+  <script src="js/angular1.6.9.js"></script>
+  <script src="node_modules/angular-aria/angular-aria.min.js"></script>
+  <script src="js/jquery-3.3.1.min.js"></script>
   <script src="js/script.js"></script>
 </body>
 </html>
