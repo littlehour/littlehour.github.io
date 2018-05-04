@@ -1,0 +1,7 @@
+.panel.panel-htop {
+    width: 100% !important;
+}
+.panel-body {
+    width: 97% !important;
+    margin: 0 auto;
+}

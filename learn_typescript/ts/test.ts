@@ -262,10 +262,57 @@ class2Instance.showClas();
 let class2Instance1:class1=new class2('class1');
 class2Instance1.showClas();
 
+let class1Instance1:class1=new class2('class1');
+
 // 成员修饰符public、private、protected
 class class3 {
     private clas3:string='class3';
 }
+
+class class4{
+    private clas3:string='calss4';
+}
 let class3Instance=new class3();
 // console.log(class3Instance.clas3);
+let class4Instance=new class4();
+// class4Instance=class3Instance
 
+class class5{
+    // protected clas5:string='class5';
+    protected constructor(protected clas5:string){
+        // this.clas5=clas5;
+    }
+    newClass5(){
+        let class5Instance=new class5('clas5');
+    }
+}
+
+// let class5Instance=new class5('clas5');
+
+class class6 extends class5{
+    constructor(clas){
+        super(clas);
+    }
+    showClas(){
+        console.log(this.clas5);
+    }
+}
+
+let passwd='paswd';
+class class7 {
+    private _clas7:string;
+    get clas7():string{
+        return this._clas7;
+    }
+
+    set clas7(newValue:string){
+        if(passwd&&passwd==='passwd'){
+            this._clas7=newValue;
+        }else{
+            alert('passwd is wrong');
+        }
+    }
+}
+
+let class7Instance=new class7();
+class7Instance.clas7='newvalue';
