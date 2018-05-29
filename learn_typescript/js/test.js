@@ -213,9 +213,11 @@ var class3Instance = new class3();
 var class4Instance = new class4();
 // class4Instance=class3Instance
 var class5 = /** @class */ (function () {
-    // protected clas5:string='class5';
+    // protected constructor(protected clas5:string){
     function class5(clas5) {
         this.clas5 = clas5;
+        // protected clas5:string='class5';
+        this.test = 'test class5';
         // this.clas5=clas5;
     }
     class5.prototype.newClass5 = function () {
@@ -227,13 +229,18 @@ var class5 = /** @class */ (function () {
 var class6 = /** @class */ (function (_super) {
     __extends(class6, _super);
     function class6(clas) {
-        return _super.call(this, clas) || this;
+        var _this = _super.call(this, clas) || this;
+        _this.test = 'test class6';
+        return _this;
     }
     class6.prototype.showClas = function () {
         console.log(this.clas5);
     };
     return class6;
 }(class5));
+var aa = new class6('aa');
+console.log('test:' + aa.test);
+// let aaa:class6=new class5('aaa');
 var passwd = 'paswd';
 var class7 = /** @class */ (function () {
     function class7() {
@@ -257,3 +264,138 @@ var class7 = /** @class */ (function () {
 }());
 var class7Instance = new class7();
 class7Instance.clas7 = 'newvalue';
+if (class7Instance.clas7) {
+    alert('clas7:' + class7Instance.clas7);
+}
+var class8 = /** @class */ (function () {
+    function class8() {
+    }
+    class8.clas8 = 'clas8';
+    return class8;
+}());
+var class8Instance = new class8();
+// class8Instance.clas8
+console.log(class8.clas8);
+var class9 = /** @class */ (function () {
+    function class9() {
+        this.clas9 = 'clas9';
+    }
+    return class9;
+}());
+var class10 = /** @class */ (function (_super) {
+    __extends(class10, _super);
+    function class10() {
+        var _this = _super !== null && _super.apply(this, arguments) || this;
+        _this.clas9 = 'clas10';
+        return _this;
+    }
+    class10.prototype.clas9Func = function () {
+        console.log('class9Func');
+    };
+    ;
+    class10.prototype.clas10Func = function () {
+        console.log('class10Func');
+    };
+    return class10;
+}(class9));
+// let class10Instance:class9;
+var class10Instance = new class10();
+class10Instance = new class10();
+class10Instance.clas10Func(); //如果引用了抽象类class9，则该方法不可访问，因为在抽象类上未声明
+console.log(class10Instance.clas9);
+// 为函数添加类型
+function func1(s1, s2) {
+    return s1 + s2;
+}
+func1('s1', 's2');
+// 书写完整函数类型
+var func2 = function (s11, s22) {
+    return s11 + s22;
+};
+// 推断类型
+var func3 = function (s1, s2) {
+    return s1 + s2;
+};
+var func4 = function (s111, s222) {
+    return s111 + s222;
+};
+// 可选参数和默认参数
+function func5(s1, s2) {
+    return s1 + s2;
+}
+func5('s1', 's2');
+// func5('s1');
+// func5('s1','s2','s3');
+function func6(s1, s2) {
+    if (s2) {
+        return s1 + s2;
+    }
+    else {
+        return s1;
+    }
+}
+func6('s1');
+func6('s1', 's2');
+// func6('s1','s2','s3');
+// function func7(s1:string,s2='s2'):string{
+function func7(s1, s2) {
+    if (s1 === void 0) { s1 = 's1'; }
+    return s1 + s2;
+}
+// func7('s1');
+func7('s1', 's22');
+var testFunc7 = func7(undefined, 's2');
+console.log(testFunc7);
+// func7('s1','s2','s3');
+// 剩余参数
+function func8(s1, s2) {
+    var s3 = [];
+    for (var _i = 2; _i < arguments.length; _i++) {
+        s3[_i - 2] = arguments[_i];
+    }
+    return s1 + ',' + s2 + ',' + s3.join(',');
+}
+func8('s1', 's2', 's3', 4, true, { a: 1 });
+var func88 = func8;
+// this和箭头函数
+var this1 = {
+    a1: 'a1',
+    a2: function () {
+        return function () {
+            alert(this.a1);
+        };
+    }
+};
+var this2 = {
+    a1: 'a1',
+    a2: function () {
+        return function () { return alert('a2'); };
+    }
+};
+var class11 = /** @class */ (function () {
+    function class11() {
+        this.clas11 = 'clas11';
+        this.aa = function () {
+            return function () {
+                alert(this.clas11);
+            };
+        };
+    }
+    class11.prototype.showClas11 = function () {
+        var _this = this;
+        return function () { return alert(_this.clas11); };
+    };
+    return class11;
+}());
+var class11Instance = new class11();
+class11Instance.showClas11()();
+function func9(sn) {
+    if (typeof sn == 'string') {
+        console.log(sn);
+    }
+    else {
+        return sn;
+    }
+}
+func9('s1');
+console.log(func9(2));
