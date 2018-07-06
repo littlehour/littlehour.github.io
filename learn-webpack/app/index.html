@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html xmlns:ng="http://angularjs.org" ng-app="gatawayConfig" class="ng-app:gatawayConfig" id="ng-app" lang="en">
+<head>
+  <meta charset="UTF-8">
+  <!-- <meta name="viewport" content="width=device-width, initial-scale=1"> -->
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta http-equiv="pragma" content="no-cache">
+	<meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
+	<meta http-equiv="expires" content="0">
+  <title>gatewayConfig</title>
+  <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
+  <link rel="stylesheet" type="text/css" href="css/main.css" />
+  <script type="text/javascript">
+    // console.log(document.documentElement.clientWidth);
+    // console.log(navigator.userAgent);
+    var ua=navigator.userAgent;
+    if(ua.indexOf('Windows')!==-1){
+      document.documentElement.style.fontSize=50+'px';
+    }else{
+      document.documentElement.style.fontSize=document.documentElement.clientWidth/7.5+'px';
+    };
+    window.onload=function(){
+      // console.log(navigator.userAgent);
+      if(ua.indexOf('Window')!==-1){
+        document.body.className='pc';
+      }else{
+        document.body.className='mobile';
+      };
+      // if(ua.indexOf('Trident')!==-1){
+      //   console.log('test');
+      // };
+    };
+    // document.documentElement.style.fontSize=document.documentElement.clientWidth/7.5+'px';
+    // document.documentElement.style.fontSize=50+'px';
+  </script>
+
+  <!-- 兼容ie8 -->
+  <!-- <script src="http://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.6.2pre/html5shiv.js"></script>
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/json2/20121008/json2.js"></script> -->
+</head>
+<body>
+  <!-- <div id="wrap" style="width: 768px;margin: 0 auto" ng-view></div> -->
+  <div id="wrap" ng-view></div>
+  <!-- <header >
+      <span class="back-icon"></span>
+      <h1>{{title}}</h1>
+      <span ng-show="needSave">save</span>
+  </header>
+  <main>
+      <div ng-view=""></div>
+  </main> -->
+
+  <!-- <script src="../../js/bootstrap.min.js"></script> -->
+  <script src="js/angular.min.js"></script>
+  <script src="js/angular-route.min.js"></script>
+  <!-- <script src="bower_components/angular/angular.js"></script>
+  <script src="bower_components/angular-route/angular-route.js"></script> -->
+  <!-- <script src="bower_components/jquery/dist/jquery.js"></script> -->
+  <script src="js/jquery-3.3.1.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="index.module.js"></script>
+  <!-- <script src="indexCtrl.js"></script> -->
+
+  <!-- login page -->
+  <script src="pages/login/login.module.js"></script>
+  <script src="pages/login/loginCtrl.js"></script>
+
+  <!-- home page -->
+  <script src="pages/home/home.module.js"></script>
+  <script src="pages/home/homeCtrl.js"></script>
+
+  <!-- apConfiguration page -->
+  <script src="pages/apConfiguration/apConfiguration.module.js"></script>
+  <script src="pages/apConfiguration/apConfigurationCtrl.js"></script>
+
+  <!-- network page -->
+  <script src="pages/networkConfig/networkConfig.module.js"></script>
+  <script src="pages/networkConfig/networkConfigCtrl.js"></script>
+
+  <!-- server page -->
+  <script src="pages/serverConfig/serverConfig.module.js"></script>
+  <script src="pages/serverConfig/serverConfigCtrl.js"></script>
+
+  <!-- upload certificate page -->
+  <!-- <script src="pages/uploadCertificate/uploadCertificate.module.js"></script>
+  <script src="pages/uploadCertificate/uploadCertificateCtrl.js"></script> -->
+
+  <!-- data filter page -->
+  <script src="pages/filterConfig/filterConfig.module.js"></script>
+  <script src="pages/filterConfig/filterConfigCtrl.js"></script>
+
+  <!-- device page -->
+  <script src="pages/deviceConfig/deviceConfig.module.js"></script>
+  <script src="pages/deviceConfig/deviceConfigCtrl.js"></script>
+
+  <!-- versionUpdate page -->
+  <!-- <script src="pages/versionUpdate/versionUpdate.module.js"></script>
+  <script src="pages/versionUpdate/versionUpdateCtrl.js"></script> -->
+</body>
+</html>

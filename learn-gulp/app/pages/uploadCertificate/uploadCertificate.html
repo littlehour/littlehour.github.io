@@ -1,0 +1,72 @@
+<!-- <!DOCTYPE html>
+<html ng-app="gatawayConfig" lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta http-equiv="pragma" content="no-cache">
+	<meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
+	<meta http-equiv="expires" content="0">
+  <title>gatewayConfig</title>
+  <link rel="stylesheet" type="text/css" href="../../css/bootstrap.min.css" />
+  <link rel="stylesheet" type="text/css" href="../../css/main.css" />
+  <script type="text/javascript">
+    document.documentElement.style.fontSize=document.documentElement.clientWidth/7.5+'px';
+  </script>
+</head>
+<body> -->
+
+<header class="set-header">
+    <span class="back-icon" ng-click="back('serverConfig')"></span>
+    <h4>SSL/TLS</h4>
+    <span class="save" ng-click="save('serverConfig')">save</span>
+</header>
+<main class="set-main">
+    <form>
+        <div class="list-group">
+            <div class="list-group-item list-group-item1">
+                <div class="form-group form-group2">
+                    <label>Upload Way</label>
+                    <!-- <select id='mode' ng-options="mode for mode in modes" ng-model="defaultMode"></select>
+                    <span class="divide"></span> -->
+                    <div class="btn-group select right">
+                        <button type="button" class="btn btn-default select-value right-btn">{{defaultWay.defaultWay}}</button>
+                        <button type="button" class="btn btn-default dropdown-toggle right-btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu ">
+                            <li ng-repeat="way in uploadWays" ng-click="select(way,'defaultWay',defaultWay)">{{way}}</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="form-group form-group2">
+                    <label for="urlPath">Urlpath</label>
+                    <input id="urlPath" type="text" name="urlPath" class="right form-control" ng-model="urlPath" />
+                    <span class="del" ng-click="del($event)"></span>
+                </div>
+            </div>
+
+            <div class="list-group-item last">
+                <div class="form-group form-group1" ng-repeat="config in certificateConfig">
+                    <label for="{{config.inputId}}">{{config.configName}}</label>
+                    <br />
+                    <input type="{{config.type}}" class="form-control left1" id="{{config.inputId}}" ng-model="config.data" />
+                    <button ng-show="config.isUpload" type="submit" class="btn btn-primary upload">upload</button>
+                </div>
+            </div>
+
+        </div>
+    </form>
+</main>
+
+<!-- <script src="../../js/angular.min.js"></script>
+<script src="../../js/angular-route.min.js"></script>
+
+<script src="../../js/jquery-3.3.1.min.js"></script>
+<script src="../../js/bootstrap.min.js"></script>
+
+<script src="uploadCertificate.module.js"></script>
+<script src="uploadCertificateCtrl.js"></script>
+</body>
+</html> -->

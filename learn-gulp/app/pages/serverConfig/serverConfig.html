@@ -1,0 +1,121 @@
+<header class="set-header">
+    <span class="back-icon" ng-click="back('home')"></span>
+    <h4>Server</h4>
+    <span class="save" ng-click="save('home')">save</span>
+</header>
+<main ng-show="page.name==='home'" class="set-main">
+    <form>
+        <div class="list-group">
+            <div class="list-group-item list-group-item1">
+                <div class="form-group">
+                    <label>Service Access</label>
+                    <!-- <select id='mode' ng-options="mode for mode in modes" ng-model="defaultMode"></select>
+                    <span class="divide"></span> -->
+                    <div class="btn-group select right">
+                        <button type="button" class="btn btn-default select-value right-btn">{{defaultService.defaultService}}</button>
+                        <button type="button" class="btn btn-default dropdown-toggle right-btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu ">
+                            <li ng-repeat="service in services" ng-click="select(service,'defaultService',defaultService)">{{service}}</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="list-group-item last" ng-show="defaultService.defaultService==='HTTP/HTTPS'">
+                <div class="form-group">
+                    <label for="httpUrl">URL</label>
+                    <input type="text" class="form-control" id="httpUrl" placeholder="请输入HTTP/HTTPS服务器地址" ng-model="url.httpUrl" />
+                    <span class="del" ng-click="del($event)"></span>
+                    <span class="clearIeDel"></span>
+                </div>
+            </div>
+
+            <div class="list-group-item {{defaultProtocol.isTcp?'tcp':''}}" ng-show="defaultService.defaultService==='MQTT'">
+                <div class="form-group">
+                    <label for="mqttUrl">URL</label>
+                    <br />
+                    <div class="btn-group select">
+                        <button type="button" class="btn btn-default select-value left-btn">{{defaultProtocol.defaultProtocol}}</button>
+                        <button type="button" class="btn btn-default dropdown-toggle left-btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu ">
+                            <li ng-repeat="protocol in protocols" ng-click="select1(protocol,'defaultProtocol',defaultProtocol,$event)">{{protocol}}</li>
+                        </ul>
+                    </div>
+                    <input type="text" class="form-control" id="mqttUrl" placeholder="请输入MQTT服务器地址" ng-model="url.mqttUrl" />
+                    <span class="del" ng-click="del($event)"></span>
+                    <span class="clearIeDel"></span>
+                </div>
+            </div>
+
+                <!-- <hr class="divide-border" ng-show="defaultProtocol.defaultProtocol==='ssl://'" /> -->
+                <div class="list-group-item2 last certificate" ng-show="defaultService.defaultService==='MQTT'&&defaultProtocol.defaultProtocol==='ssl://'">
+                    <!-- <a href='#/uploadCertificate' ng-click="switchPage($event,{name:'uploadCertificate',title:'SSL/TLS',needSave:true},page)" class="next"> -->
+                    <label ng-click="switchPage($event,{name:'uploadCertificate',title:'SSL/TLS',needSave:true},page)" class="next">
+                        上传SSL/TLS证书
+                        <span class="next-icon"></span>
+                        <span ng-if="certificate===''" class="disabled">Not Set</span>
+                        <span ng-if="certificate!==''" class="disabled">certificate</span>
+                    </label>
+                </div>
+                <!-- <hr class="divide-border" ng-show="defaultProtocol.defaultProtocol==='ssl://'" /> -->
+            <div class="list-group-item last {{defaultProtocol.isTcp?'tcp':''}}" ng-show="defaultService.defaultService==='MQTT'">
+                <div class="form-group form-group1" ng-repeat="config in mqttConfig">
+                    <label for="{{config.inputId}}">{{config.configName}}</label>
+                    <br />
+                    <input type="{{config.inputType}}" class="form-control" id="{{config.inputId}}" ng-model="config.data" />
+                    <span class="del" ng-click="del($event)"></span>
+                    <span class="clearIeDel clearIeDel2"></span>
+                </div>
+
+            </div>
+        </div>
+    </form>
+</main>
+
+<!-- <iframe ng-show="isUpload" src="pages/uploadCertificate/uploadCertificate.html" width="100%" height="2000" name="uploadCertificate"></iframe> -->
+
+<main ng-show="page.name==='uploadCertificate'" class="set-main">
+    <form>
+        <div class="list-group">
+            <div class="list-group-item list-group-item1">
+                <div class="form-group form-group2">
+                    <label>Upload Way</label>
+                    <!-- <select id='mode' ng-options="mode for mode in modes" ng-model="defaultMode"></select>
+                    <span class="divide"></span> -->
+                    <div class="btn-group select right">
+                        <button type="button" class="btn btn-default select-value right-btn">{{defaultWay.defaultWay}}</button>
+                        <button type="button" class="btn btn-default dropdown-toggle right-btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu ">
+                            <li ng-repeat="way in uploadWays" ng-click="select(way,'defaultWay',defaultWay)">{{way}}</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="form-group form-group2">
+                    <label for="urlPath">Urlpath</label>
+                    <input id="urlPath" type="text" name="urlPath" class="right form-control" ng-model="urlPath" />
+                    <span class="del" ng-click="del($event)"></span>
+                    <span class="clearIeDel"></span>
+                </div>
+            </div>
+
+            <div class="list-group-item last">
+                <div class="form-group form-group1" ng-repeat="config in certificateConfig">
+                    <label for="{{config.inputId}}">{{config.configName}}</label>
+                    <br />
+                    <input type="{{config.type}}" class="form-control left1" id="{{config.inputId}}" ng-model="config.data" />
+                    <span class="del del2" ng-click="del($event)"></span>
+                    <span class="clearIeDel clearIeDel3"></span>
+                    <button ng-show="config.isUpload" type="submit" class="btn btn-primary upload">upload</button>
+                </div>
+            </div>
+
+        </div>
+    </form>
+</main>

@@ -1,0 +1,76 @@
+<header class="set-header">
+    <span class="back-icon" ng-click="back('deviceConfig')"></span>
+    <h4>Firmware Upgrade</h4>
+    <!-- <span class="save" ng-click="save('home')">save</span> -->
+</header>
+<main class="set-main">
+    <form>
+        <div class="list-group">
+            <div class="list-group-item list-group-item1">
+                <div class="form-group">
+                    <label>Upgrade Type</label>
+                    <!-- <select id='mode' ng-options="mode for mode in modes" ng-model="defaultMode"></select>
+                    <span class="divide"></span> -->
+                    <div class="btn-group select right">
+                        <button type="button" class="btn btn-default select-value right-btn">{{defaultMethod.defaultMethod}}</button>
+                        <button type="button" class="btn btn-default dropdown-toggle right-btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu ">
+                            <li ng-repeat="method in updateMethods" ng-click="select(method,'defaultMethod',defaultMethod)">{{method}}</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div ng-show="defaultMethod.defaultMethod==='空中升级'" class="list-group-item2">
+                <a href='{{safe.href}}' class="next next2">
+                    Current Version
+                    <!-- <span class="next-icon"></span> -->
+                    <span class="disabled">v1.2.0</span>
+                </a>
+            </div>
+
+            <div class="list-group-item list-group-item1 list-group-item4">
+                <div ng-show="defaultMethod.defaultMethod==='空中升级'" class="form-group">
+                    <label>Optional Version</label>
+                    <!-- <select id='mode' ng-options="mode for mode in modes" ng-model="defaultMode"></select>
+                    <span class="divide"></span> -->
+                    <div class="btn-group select right">
+                        <button type="button" class="btn btn-default select-value right-btn">v1.2.0</button>
+                        <button type="button" class="btn btn-default dropdown-toggle right-btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu ">
+                            <li>v1.2.0</li>
+                        </ul>
+                    </div>
+
+                    <!-- <div id="versionMessage"> -->
+                        <dl ng-show="defaultMethod.defaultMethod==='空中升级'" class="detail">
+                            <dt>Version:</dt>
+                            <dd>v1.2.0</dd>
+
+                            <dt>Model:</dt>
+                            <dd>G1-B</dd>
+
+                            <dt>Feature:</dt>
+                            <dd>1.</dd>
+                            <dd>2.</dd>
+
+                            <dt>Bug-Fix:</dt>
+                            <dd>1.</dd>
+                            <dd>2.</dd>
+                        </dl>
+                    <!-- </div> -->
+                </div>
+                <div ng-show="defaultMethod.defaultMethod==='USB'" class="usb-detail">
+                        <p class="list">1. 将固件重命名为“thingoo-upgrade.bin”。</p>
+                        <p class="list">2. 然后把thingoo-upgrade.bin文件复制到U盘的根目录下。</p>
+                        <p class="list">3. 将USB接口插入网关设备，在web界面Other设置栏中Upgrade Type选择USB Upgrade。</p>
+                    </div>
+                    <button class="btn btn-primary btn-full">Upgrade</button>
+            </div>
+        </div>
+    </form>
+</main>

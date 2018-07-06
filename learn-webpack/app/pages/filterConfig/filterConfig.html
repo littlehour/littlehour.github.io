@@ -1,0 +1,44 @@
+<header class="set-header">
+    <span class="back-icon" ng-click="back('home')"></span>
+    <h4>Data And Data and Filter</h4>
+    <span class="save" ng-click="save('home')">save</span>
+</header>
+<main class="set-main">
+    <form>
+        <div class="list-group">
+            <div class="list-group-item list-group-item1">
+                <div ng-repeat="config in filterConfig1" class="form-group form-group2">
+                    <label>{{config.configName}}</label>
+                    <!-- <select id='mode' ng-options="mode for mode in modes" ng-model="defaultMode"></select>
+                    <span class="divide"></span> -->
+                    <div class="btn-group select right">
+                        <button type="button" class="btn btn-default select-value right-btn width230">{{config.defaultOption.defaultOption}}</button>
+                        <button type="button" class="btn btn-default dropdown-toggle right-btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li ng-repeat="option in config.options" ng-click="select(option,'defaultOption',config.defaultOption)">{{option}}</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="list-group-item">
+                <div class="form-group form-group1" ng-repeat="config in filterConfig2">
+                    <label for="{{config.inputId}}">{{config.configName}}</label>
+                    <br />
+                    <input type="{{config.type}}" class="form-control" id="{{config.inputId}}" placeholder="{{config.placeholder}}" ng-model="config.data" />
+                    <span class="del" ng-click="del($event)"></span>
+                    <span class="clearIeDel clearIeDel2"></span>
+                </div>
+            </div>
+
+            <div class="list-group-item list-group-item2 list-group-item3">
+                <div ng-repeat="config in filterConfig3" class="form-group">
+                    <label for="{{config.inputId}}" class="{{config.isOn?'on':'off'}}" ng-click="switch(config)">{{config.configName}}</label>
+                    <input type="checkbox" name="{{config.inputId}}" class="switch" ng-checked="config.isOn" id="{{config.inputId}}" />
+                </div>
+            </div>
+        </div>
+    </form>
+</main>

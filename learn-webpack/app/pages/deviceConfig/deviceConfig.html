@@ -1,0 +1,233 @@
+<header class="set-header">
+    <span class="back-icon" ng-click="back('home')"></span>
+    <h4>{{page.title}}</h4>
+    <span class="save" ng-show="page.needSave" ng-click="save('home')">save</span>
+</header>
+
+<main ng-show="page.name==='home'" class="set-main">
+    <form>
+        <div class="list-group">
+            <div ng-repeat="config in deviceConfig1" ng-switch="config.type"class="list-group-item2 {{config.isLast?'last':''}}">
+                <!-- <div ng-show="config.type==='text'" class="deviceArg"> -->
+                <div ng-switch-when="text" class="deviceArg">
+                    <span>{{config.configName}}</span>
+                    <span class="disabled">{{config.data}}</span>
+                </div>
+
+                <!-- <a ng-show="config.type==='jump'" href="{{config.href}}" ng-click="switchPage($event,config.jumpPage,page)" class="next next1"> -->
+                <label ng-switch-when="jump" ng-click="switchPage($event,config.jumpPage,page)">
+                    {{config.configName}}
+                    <span class="next-icon"></span>
+                    <span ng-if="config.data===''" class="disabled">Not Set</span>
+                    <span ng-if="config.data!==''" class="disabled">{{config.data}}</span>
+                </label>
+
+                <!-- <div ng-show="config.type==='form'" class="form-group"> -->
+                <div ng-switch-when="form" class="form-group">
+                    <label for="{{config.inputId}}" class="{{config.isOn?'on':'off'}}" ng-click="switch(config)">{{config.configName}}</label>
+                    <input type="checkbox" class="switch" ng-checked="config.isOn" id="{{config.inputId}}" />
+                    <!-- <input type="checkbox" name="{{config.inputId}}" class="switch" ng-checked="config.isOn" id="{{config.inputId}}" /> -->
+                </div>
+            </div>
+
+        </div>
+
+        <div class="list-group list-group1">
+            <div class="list-group-item2 {{safe.isLast?'last':''}}">
+                <!-- <label href='{{safe.href}}' ng-click="switchPage($event,safe.jumpPage,page)"> -->
+                <label ng-click="switchPage($event,safe.jumpPage,page)">
+                    {{safe.configName}}
+                    <span class="next-icon"></span>
+                    <span ng-if="safe.data===''" class="disabled">Not Set</span>
+                    <span ng-if="safe.data!==''" class="disabled">{{safe.data}}</span>
+                </label>
+            </div>
+        </div>
+
+        <div class="list-group list-group1">
+            <div ng-repeat="config in deviceConfig2" ng-switch="config.type" class="list-group-item2 {{config.isLast?'last':''}}">
+                <!-- <div ng-show="config.type==='text'" class="deviceArg"> -->
+                <div ng-switch-when="text" class="deviceArg">
+                    <span>{{config.configName}}</span>
+                    <span class="disabled">{{config.data}}</span>
+                </div>
+
+                <!-- <a ng-show="config.type==='jump'" href="{{config.href}}" ng-click="switchPage($event,config.jumpPage,page)" class="next next1"> -->
+                <label ng-switch-when="jump" ng-click="switchPage($event,config.jumpPage,page)">
+                    {{config.configName}}
+                    <span class="next-icon"></span>
+                    <span ng-if="config.data===''" class="disabled">Not Set</span>
+                    <span ng-if="config.data!==''" class="disabled">{{config.data}}</span>
+                </label>
+
+                <!-- <div ng-show="config.type==='form'" class="form-group"> -->
+                <div ng-switch-when="form" class="form-group">
+                    <label for="{{config.inputId}}" class="{{config.isOn?'on':'off'}}" ng-click="switch(config)">{{config.configName}}</label>
+                    <input type="checkbox" class="switch" ng-checked="config.isOn" id="{{config.inputId}}" />
+                    <!-- <input type="checkbox" name="{{config.inputId}}" class="switch" ng-checked="config.isOn" id="{{config.inputId}}" /> -->
+                </div>
+            </div>
+
+        </div>
+
+        <div class="restart">
+            <button class="btn">Reboot the Gateway</button>
+            <button class="btn">Factory reset</button>
+        </div>
+    </form>
+</main>
+
+<main class="set-main" ng-show="page.name==='changepw1'">
+    <form>
+        <div class="list-group">
+            <div class="list-group-item last">
+                <div class="form-group form-group1">
+                    <label for="oldPassword">Old password</label>
+                    <input type="password" class="form-control" id="oldPassword" name="oldPassword" placeholder="Please enter your password" />
+                    <span class="del" ng-click="del($event)"></span>
+                    <span class="clearIeDel clearIeDel2"></span>
+                </div>
+
+                <button class="btn btn-primary btn-full changpw" ng-click="switchPage($event,{name:'changepw2',title:'Change Password',needSave:false},page)">Next</button>
+            </div>
+        </div>
+    </form>
+</main>
+
+<main class="set-main" ng-show="page.name==='changepw2'">
+    <form>
+        <div class="list-group">
+            <div class="list-group-item last">
+                <div ng-repeat="config in passwordConfig" class="form-group form-group1 form-group3">
+                    <label for="{{config.inputId}}">{{config.configName}}</label>
+                    <input type="{{config.type}}" class="form-control" id="{{config.inputId}}" name="{{config.inputId}}" placeholder="{{config.placeholder}}" />
+                    <span class="del" ng-click="del($event)"></span>
+                    <span class="clearIeDel clearIeDel2"></span>
+                </div>
+
+                <button class="btn btn-primary btn-full changpw" ng-click="save('home')">Complete</button>
+            </div>
+        </div>
+    </form>
+</main>
+
+<main class="set-main" ng-show="page.name==='time'">
+    <form>
+        <div class="list-group">
+            <div class="list-group-item list-group-item1">
+                <div class="form-group form-group2">
+                    <label>Timezone</label>
+                    <div class="btn-group select right">
+                        <button type="button" class="btn btn-default select-value right-btn">UTC</button>
+                        <button type="button" class="btn btn-default dropdown-toggle right-btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu ">
+                            <li>UTC</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="list-group-item last">
+                <div class="form-group">
+                    <label>Ntp Server List</label>
+                    <div class="wrap">
+                        <input type="text" class="form-control form-control1 first" ng-model="serverList.list1" />
+                        <span class="del del1" ng-click="del($event)"></span>
+                        <span class="clearIeDel clearIeDel2"></span>
+                    </div>
+                    <div class="wrap">
+                        <input type="text" class="form-control form-control1" ng-model="serverList.list2" />
+                        <span class="del del1" ng-click="del($event)"></span>
+                        <span class="clearIeDel clearIeDel2"></span>
+                    </div>
+                    <div class="wrap">
+                        <input type="text" class="form-control form-control1" ng-model="serverList.list3" />
+                        <span class="del del1" ng-click="del($event)"></span>
+                        <span class="clearIeDel clearIeDel2"></span>
+                    </div>
+                    <div class="wrap">
+                        <input type="text" class="form-control form-control1" ng-model="serverList.list4" />
+                        <span class="del del1" ng-click="del($event)"></span>
+                        <span class="clearIeDel clearIeDel2"></span>
+                    </div>
+                    <!-- <span class="del" ng-click="del($event)"></span> -->
+                </div>
+            </div>
+        </div>
+    </form>
+</main>
+
+<main class="set-main" ng-show="page.name==='versionUpdate'">
+    <form>
+        <div class="list-group">
+            <div class="list-group-item list-group-item1">
+                <div class="form-group">
+                    <label>Upgrade Type</label>
+                    <!-- <select id='mode' ng-options="mode for mode in modes" ng-model="defaultMode"></select>
+                    <span class="divide"></span> -->
+                    <div class="btn-group select right">
+                        <button type="button" class="btn btn-default select-value right-btn">{{defaultMethod.defaultMethod}}</button>
+                        <button type="button" class="btn btn-default dropdown-toggle right-btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu ">
+                            <li ng-repeat="method in updateMethods" ng-click="select(method,'defaultMethod',defaultMethod)">{{method}}</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div ng-show="defaultMethod.defaultMethod==='空中升级'" class="list-group-item2">
+                <label class="next1">
+                <!-- <a href='{{safe.href}}' class="next next2"> -->
+                    Current Version
+                    <!-- <span class="next-icon"></span> -->
+                    <span class="disabled">v1.2.0</span>
+                </label>
+            </div>
+
+            <div class="list-group-item list-group-item1 list-group-item4">
+                <div ng-show="defaultMethod.defaultMethod==='空中升级'" class="form-group">
+                    <label>Optional Version</label>
+                    <!-- <select id='mode' ng-options="mode for mode in modes" ng-model="defaultMode"></select>
+                    <span class="divide"></span> -->
+                    <div class="btn-group select right">
+                        <button type="button" class="btn btn-default select-value right-btn">v1.2.0</button>
+                        <button type="button" class="btn btn-default dropdown-toggle right-btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu ">
+                            <li>v1.2.0</li>
+                        </ul>
+                    </div>
+
+                    <!-- <div id="versionMessage"> -->
+                        <dl ng-show="defaultMethod.defaultMethod==='空中升级'" class="detail">
+                            <dt>Version:</dt>
+                            <dd>v1.2.0</dd>
+
+                            <dt>Model:</dt>
+                            <dd>G1-B</dd>
+
+                            <dt>Feature:</dt>
+                            <dd>1.</dd>
+                            <dd>2.</dd>
+
+                            <dt>Bug-Fix:</dt>
+                            <dd>1.</dd>
+                            <dd>2.</dd>
+                        </dl>
+                    <!-- </div> -->
+                </div>
+                <div ng-show="defaultMethod.defaultMethod==='USB'" class="usb-detail">
+                        <p class="list">1. 将固件重命名为“thingoo-upgrade.bin”。</p>
+                        <p class="list">2. 然后把thingoo-upgrade.bin文件复制到U盘的根目录下。</p>
+                        <p class="list">3. 将USB接口插入网关设备，在web界面Other设置栏中Upgrade Type选择USB Upgrade。</p>
+                    </div>
+                    <button class="btn btn-primary btn-full">Upgrade</button>
+            </div>
+        </div>
+    </form>
+</main>

@@ -1,0 +1,142 @@
+<header class="set-header">
+    <span class="back-icon" ng-click="back('home')"></span>
+    <h4>Network</h4>
+    <span class="save" ng-click="save('home')">save</span>
+</header>
+<main class="set-main">
+    <form>
+        <div class="list-group">
+            <div class="list-group-item2">
+                <div class="form-group">
+                    <label class="{{isRouter?'on':'off'}}" ng-click="switch($event)">Router</label>
+                    <input type="radio" name="chooseNetwork" class="switch" ng-checked="isRouter" id="isRouter" />
+                </div>
+            </div>
+            <div class="panel-body" ng-show='isRouter'>
+                <div class="form-group last">
+                    <label>Mode</label>
+                    <!-- <select id='mode' ng-options="mode for mode in modes" ng-model="defaultMode"></select>
+                    <span class="divide"></span> -->
+                    <div class="btn-group select right">
+                        <button type="button" class="btn btn-default select-value right-btn">{{defaultMode.routerDefaultMode}}</button>
+                        <button type="button" class="btn btn-default dropdown-toggle right-btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu ">
+                            <li ng-repeat="mode in modes" ng-click="select(mode,'routerDefaultMode',defaultMode)">{{mode}}</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div ng-show="defaultMode.routerDefaultMode==='Static'">
+                    <div class="net-set" ng-repeat="config in staticConfig">
+                        <label>{{config.configName}}</label>
+                        <br />
+                        <input type="text" class="net-input" ng-model="config.routerData[0]" />
+                        <span class="dot">.</span>
+                        <span class="clearIeDel1">ss</span>
+                        <input type="text" class="net-input" ng-model="config.routerData[1]" />
+                        <span class="dot">.</span>
+                        <span class="clearIeDel1">ss</span>
+                        <input type="text" class="net-input" ng-model="config.routerData[2]" />
+                        <span class="dot">.</span>
+                        <span class="clearIeDel1">ss</span>
+                        <input type="text" class="net-input" ng-model="config.routerData[3]" />
+                        <span class="dot">.</span>
+                        <span class="clearIeDel1">ss</span>
+                        <span class="del del1" ng-click="del($event)"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="list-group-item2">
+                <label class="{{isRepeater?'on':'off'}}" ng-click="switch($event)">Repeater</label>
+                <input type="radio" name="chooseNetwork" class="switch" ng-checked="isRepeater" id="isRepeater" />
+            </div>
+            <div class="panel-body" ng-show="isRepeater">
+                <div class="form-group">
+                    <label>WLAN</label>
+                    <!-- <select id='mode' ng-options="mode for mode in modes" ng-model="defaultMode"></select>
+                    <span class="divide"></span> -->
+                    <div class="btn-group select right">
+                        <button type="button" class="btn btn-default select-value right-btn">scaning wifi...</button>
+                        <button type="button" class="btn btn-default dropdown-toggle right-btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu ">
+                            <li>scaning wifi...</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="passwordRepeater">Password</label>
+                    <input id="passwordRepeater" type="{{isClose?'password':'text'}}" name="passwordRepeater" class="right form-control" ng-model="password.passwordRepeater" />
+                    <!-- <span class="{{isClose?'close-eye':'open-eye'}}" ng-click="closeEye()"></span> -->
+                    <span class='del del1' ng-click="del($event)"></span>
+                    <span class="clearIeDel clearIeDel2"></span>
+                </div>
+
+                <div class="form-group last">
+                        <label>Mode</label>
+                        <!-- <select id='mode' ng-options="mode for mode in modes" ng-model="defaultMode"></select>
+                        <span class="divide"></span> -->
+                        <div class="btn-group select right">
+                            <button type="button" class="btn btn-default select-value right-btn">{{defaultMode.repeaterDefaultMode}}</button>
+                            <button type="button" class="btn btn-default dropdown-toggle right-btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu ">
+                                <li ng-repeat="mode in modes" ng-click="select(mode,'repeaterDefaultMode',defaultMode)">{{mode}}</li>
+                            </ul>
+                        </div>
+                    </div>
+    
+                    <div ng-show="defaultMode.repeaterDefaultMode==='Static'">
+                        <div class="net-set" ng-repeat="config in staticConfig">
+                            <label>{{config.configName}}</label>
+                            <br />
+                            <input type="text" class="net-input" ng-model="config.repeaterData[0]" />
+                            <span class="dot">.</span>
+                            <span class="clearIeDel1">ss</span>
+                            <input type="text" class="net-input" ng-model="config.repeaterData[1]" />
+                            <span class="dot">.</span>
+                            <span class="clearIeDel1">ss</span>
+                            <input type="text" class="net-input" ng-model="config.repeaterData[2]" />
+                            <span class="dot">.</span>
+                            <span class="clearIeDel1">ss</span>
+                            <input type="text" class="net-input" ng-model="config.repeaterData[3]" />
+                            <span class="dot">.</span>
+                            <span class="clearIeDel1">ss</span>
+                            <span class="del del1" ng-click="del($event)"></span>
+                        </div>
+                    </div>
+            </div>
+
+            <div class="list-group-item2 last net3g">
+                <label class="{{is3g?'on':'off'}}" ng-click="switch($event)">3G</label>
+                <input type="radio" name="chooseNetwork" class="switch" ng-checked="is3g" id="is3g" />
+            </div>
+            <div class="panel-body last" ng-show="is3g">
+                <div class="form-group">
+                    <label for="apn">APN</label>
+                    <input id="apn" type="text" name="apn" class="right form-control" ng-model="apn" />
+                    <span class="del del1" ng-click="del($event)"></span>
+                    <span class="clearIeDel clearIeDel2"></span>
+                </div>
+                <div class="form-group">
+                    <label for="password3g">Password</label>
+                    <input id="password3g" type="password" name="password3g" class="right form-control" ng-model="password.password3g" />
+                    <span class="del del1" ng-click="del($event)"></span>
+                    <span class="clearIeDel clearIeDel2"></span>
+                </div>
+                <div class="form-group last">
+                    <label for="username">Username</label>
+                    <input id="username" type="text" name="username" class="right form-control" ng-model="username" />
+                    <span class="del del1" ng-click="del($event)"></span>
+                    <span class="clearIeDel clearIeDel2"></span>
+                </div>
+            </div>
+        </div>
+    </form>
+</main>

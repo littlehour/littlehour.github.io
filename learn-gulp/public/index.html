@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:ng="http://angularjs.org" ng-app="gatawayConfig" class="ng-app:gatawayConfig" id="ng-app" lang="en">
+<head>
+  <meta charset="UTF-8">
+  <!-- <meta name="viewport" content="width=device-width, initial-scale=1"> -->
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta http-equiv="pragma" content="no-cache">
+	<meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
+	<meta http-equiv="expires" content="0">
+  <title>gatewayConfig</title>
+  <link rel="stylesheet" href="css/main-0ad93cdec8.min.css">
+  <script type="text/javascript">
+    // console.log(document.documentElement.clientWidth);
+    // console.log(navigator.userAgent);
+    var ua=navigator.userAgent;
+    if(ua.indexOf('Windows')!==-1){
+      document.documentElement.style.fontSize=50+'px';
+    }else{
+      document.documentElement.style.fontSize=document.documentElement.clientWidth/7.5+'px';
+    };
+    window.onload=function(){
+      // console.log(navigator.userAgent);
+      if(ua.indexOf('Window')!==-1){
+        document.body.className='pc';
+      }else{
+        document.body.className='mobile';
+      };
+      // if(ua.indexOf('Trident')!==-1){
+      //   console.log('test');
+      // };
+    };
+    // document.documentElement.style.fontSize=document.documentElement.clientWidth/7.5+'px';
+    // document.documentElement.style.fontSize=50+'px';
+  </script>
+
+  <!-- 兼容ie8 -->
+  <!-- <script src="http://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.6.2pre/html5shiv.js"></script>
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/json2/20121008/json2.js"></script> -->
+</head>
+<body>
+  <!-- <div id="wrap" style="width: 768px;margin: 0 auto" ng-view></div> -->
+  <div id="wrap" ng-view></div>
+  <!-- <header >
+      <span class="back-icon"></span>
+      <h1>{{title}}</h1>
+      <span ng-show="needSave">save</span>
+  </header>
+  <main>
+      <div ng-view=""></div>
+  </main> -->
+
+  <script src="js/main-08d5da9d11.min.js"></script>
+</body>
+</html>

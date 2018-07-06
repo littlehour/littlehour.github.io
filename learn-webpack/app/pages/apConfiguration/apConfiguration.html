@@ -1,0 +1,48 @@
+<header class="set-header">
+    <span class="back-icon" ng-click="back('home')"></span>
+    <h4>AP Configuration</h4>
+    <span class="save" ng-click="save('home')">save</span>
+</header>
+<main class="set-main">
+    <form>
+        <div class="list-group">
+            <div class="list-group-item">
+                <div class="form-group">
+                    <label for="ssid">SSID</label>
+                    <input type="text" class="form-control" id="ssid" placeholder="4511011" ng-model="ssid" />
+                    <span class="del" ng-click="del($event)"></span>
+                    <span class="clearIeDel"></span>
+                </div>
+            </div>
+
+            <div class="ip-set net-set list-group-item">
+                <div class="form-group">
+                    <label>LAN IP</label>
+                    <br />
+                    <input type="text" class="net-input" ng-model="ipConfig[0]" />
+                    <span class="dot">.</span>
+                    <span class="clearIeDel1">ss</span>
+                    <input type="text" class="net-input" ng-model="ipConfig[1]" />
+                    <span class="dot">.</span>
+                    <span class="clearIeDel1">ss</span>
+                    <input type="text" class="net-input" ng-model="ipConfig[2]" />
+                    <span class="dot">.</span>
+                    <span class="clearIeDel1">ss</span>
+                    <input type="text" class="net-input" ng-model="ipConfig[3]" />
+                    <span class="dot">.</span>
+                    <span class="clearIeDel1">ss</span>
+                    <span class="del" ng-click="del($event)"></span>
+                </div>
+            </div>
+
+            <div class="form-group list-group-item last">
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" class="form-control" id="password" placeholder="Please enter your password" ng-model="password" />
+                    <span class="del" ng-click="del($event)"></span>
+                    <span class="clearIeDel"></span>
+                </div>
+            </div>
+        </div>
+    </form>
+</main>

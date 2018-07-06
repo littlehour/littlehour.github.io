@@ -1,0 +1,65 @@
+<!-- <!DOCTYPE html>
+<html ng-app="home" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta http-equiv="pragma" content="no-cache">
+	<meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
+	<meta http-equiv="expires" content="0">
+    <title>G1-BLE</title>
+    <link rel="stylesheet" type="text/css" href="../../css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/main.css" />
+</head>
+<body> -->
+    <header id="home-header">
+        <h4 id="home-title">
+            Home
+        </h4>
+        <a class="set-icon" href="#/deviceConfig"></a>
+        <!-- <dl>
+            <dt>{{networkStatus.ssid}}</dt>
+            <dd>{{networkStatus.gatewayMac}}</dd>
+        </dl>
+        <dl>
+            <dt>{{networkStatus.gatewayMode}}</dt>
+            <dd>{{networkStatus.lanIP}}</dd>
+        </dl> -->
+        <div class="netStatus">
+            <div class="left">
+                <div class="top">{{networkStatus.ssid}}</div>
+                <div>{{networkStatus.gatewayMac}}</div>
+            </div>
+            <div class="right">
+                <div class="top">{{networkStatus.gatewayMode}}</div>
+                <div>{{networkStatus.lanIP}}</div>
+            </div>
+        </div>
+    </header>
+    <main id="home-main">
+        <div class="list-group" id="home-list-group">
+            <a href="#/apConfiguration" class="list-group-item">
+                <span class="icon ap-icon"></span>
+                AP Configuration
+            </a>
+            <a href="#/networkConfig" class="list-group-item">
+                <span class="icon net-icon"></span>
+                Net Work
+            </a>
+            <a href="#/serverConfig" class="list-group-item">
+                <span class="icon server-icon"></span>
+                Server
+            </a>
+            <a href="#/filterConfig" class="list-group-item">
+                <span class="icon data-icon"></span>
+                Data and Filter
+            </a>
+        </div>
+    </main>
+   
+    <!-- <script src="../../js/bootstrap.min.js"></script> -->
+    <!-- <script src="../../js/angular.min.js"></script> -->
+    <!-- <script src="../../js/angular-route.min.js"></script> -->
+    <!-- <script src="homeCtrl.js"></script>
+</body>
+</html> -->

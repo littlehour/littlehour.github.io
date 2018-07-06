@@ -461,6 +461,7 @@ class11Instance.showClas11()();
 // 重载
 function func9 (s1:string):void;
 function func9(n1:number):number;
+//并非重载
 function func9(sn):any{
     if(typeof sn=='string'){
         console.log(sn);
@@ -471,3 +472,51 @@ function func9(sn):any{
 
 func9('s1');
 console.log(func9(2));
+
+// 泛型
+function identity<T>(arg:T):T{
+    // console.log(arg.length);
+    return arg;
+}
+let arg1:string='arg1';
+identity(arg1);
+let arg2:number=1;
+identity(arg2);
+identity<Boolean>(true);
+
+function identity1<T>(arg:T[]):T[]{
+    console.log(arg.length);
+    return arg;
+}
+let arg3:Array<Number>=[1,2,3];
+identity1(arg3);
+identity1<Number>([1,2]);
+
+let identity2:<t>(arg:t)=>t=identity;
+let identity3:{<u>(arg:u):u}=identity;
+interface identity4{
+    <T>(arg:T):T;
+}
+let identity44:identity4=identity;
+identity44<number>(1);
+identity44(3);
+interface identity5<T>{
+    (arg:T):T;
+}
+let identity55:identity5<number>=identity;
+identity55(1);
+
+// interface obj<K>{
+//     key:K
+// }
+// interface key<K>{
+    
+// }
+// function getProperty<T extends obj<K>>(obj: T, key: K) {
+//     return obj[key];
+// }
+
+// let x = { a: 1, b: 2, c: 3, d: 4 };
+
+// getProperty(x, "a"); // okay
+// getProperty(x, "m");

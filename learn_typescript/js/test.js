@@ -389,6 +389,7 @@ var class11 = /** @class */ (function () {
 }());
 var class11Instance = new class11();
 class11Instance.showClas11()();
+//并非重载
 function func9(sn) {
     if (typeof sn == 'string') {
         console.log(sn);
@@ -399,3 +400,38 @@ function func9(sn) {
 }
 func9('s1');
 console.log(func9(2));
+// 泛型
+function identity(arg) {
+    // console.log(arg.length);
+    return arg;
+}
+var arg1 = 'arg1';
+identity(arg1);
+var arg2 = 1;
+identity(arg2);
+identity(true);
+function identity1(arg) {
+    console.log(arg.length);
+    return arg;
+}
+var arg3 = [1, 2, 3];
+identity1(arg3);
+identity1([1, 2]);
+var identity2 = identity;
+var identity3 = identity;
+var identity44 = identity;
+identity44(1);
+identity44(3);
+var identity55 = identity;
+identity55(1);
+// interface obj<K>{
+//     key:K
+// }
+// interface key<K>{
+// }
+// function getProperty<T extends obj<K>>(obj: T, key: K) {
+//     return obj[key];
+// }
+// let x = { a: 1, b: 2, c: 3, d: 4 };
+// getProperty(x, "a"); // okay
+// getProperty(x, "m");
