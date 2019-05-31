@@ -1,8 +1,8 @@
 import './style.css';
 import './test.css';
 import _ from 'lodash';
-// import icon from './gatewayHome.png';
-// import icon1 from './ibeacon.png';
+import icon from './gatewayHome.png';
+import icon1 from './ibeacon.png';
 import './index.html';
 import data from './test.json';
 import po from './piece.html';

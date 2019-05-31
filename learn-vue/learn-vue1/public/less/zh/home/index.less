@@ -1,0 +1,456 @@
+@import (multiple) '../../en/home/index.less';  //导入预处理文件会合并到该文件
+@import (optional) '../../en/home/index1.less';  //导入预处理文件会合并到该文件
+@import '../../en/home/index.css';  //直接导入css会直接下载该文件
+// @import '../../en/home/aa';  //默认扩展为less
+.class55{
+    .testReference();
+}
+.borderSty(@borderValue: 1px solid #000){ //less混入
+    border: @borderValue
+}
+@inner : inner;
+#outer {
+    .inner() when (@inner = inner) {
+        color: red;
+    }
+}
+// #outer() when (default()) {
+//     .inner() when not (default()) {
+//         color: red;
+//     }
+// }
+.block{ //继承
+    opacity: 0.6;
+}
+.mixin(@x)                   {x: 11}
+.mixin(@x)                   {y: 22}
+.mixin(@x) when (default()) {z: @x}
+
+div {
+  .mixin(3);
+}
+
+div.special {
+  .mixin(1);
+}
+.mixin1(@color; @margin: 10px) {
+    color: @color;
+    margin: @margin;
+    bottom: 0;
+}
+.mixin1(@color; @padding: 10px) {
+    color: @color;
+    padding: @padding;
+}
+.mixin1(@color; @margin; @padding) {
+    color: @color;
+    margin: @margin;
+    padding: @padding;
+}
+// .class1 {
+//     .mixin1(@margin: 20px; @color: #33acfe);
+// }
+.class2 {
+    .mixin1(#efca44, 12px);
+}
+.mixin2(@color) {
+    color-1: @color;
+}
+.mixin2(@color: 7; @padding: 2px) {
+    color-2: @color;
+    padding-2: @padding;
+}
+.mixin2(@color; @padding; @margin: 5) {
+    color-3: @color;
+    padding-3: @padding;
+    margin: @margin @margin @margin @margin;
+}
+.some .selector div {
+    .mixin2(#008000);
+}
+
+.mixin3() {
+    // @width:  100%;
+    // @height: 200px;
+    .mixin4() {
+        @width:  100%;
+        @height: 200px;
+        width: @width;
+        height: @height;
+        color: @ff;
+    }
+}
+@ff: #fff;
+.caller {
+    @width: 20px;
+    @height: 30px;
+    .mixin3 .mixin4();
+    // @width: 20px;
+    // @height: 30px;
+    margin:  @width;
+    padding: @height;
+}
+
+.unlock(@value) { // outer mixin
+    @aaa: aaa;
+    .doSomething() { // nested mixin
+      aaa: @aaa;
+      declaration: @value;
+    }
+  }
+  
+  #namespace {
+    .unlock(5); // unlock doSomething mixin
+    .doSomething(); //nested mixin was copied here and is usable
+  }
+
+  // declare detached ruleset
+@detached-ruleset: { background: red; };
+// use detached ruleset
+.top {
+    @detached-ruleset(); 
+}
+
+// // detached ruleset with a mixin
+// @detached-ruleset1: { 
+//     .mixin5() {
+//         color:blue;
+//     }
+// };
+// // call detached ruleset
+// .caller1 {
+//     @detached-ruleset1(); 
+//     .mixin5();
+// }
+
+//分离的规则集无法返回变量
+// @detached-ruleset2:{
+//     @test: blue;
+//     // color: @test;
+// };
+// .caller2{
+//     @detached-ruleset2();
+//     color: @test;
+// }
+
+.test-ruleset1 {
+    @test-ruleset();
+}
+
+@detached-1: { scope-detached: @one @two; };
+.one {
+  @one: visible;
+  width: 20px;
+  .two {
+    @detached-2: @detached-1; // copying/renaming ruleset 
+    @two: visible; // ruleset can not see this variable
+    // @one: visible;
+    height: 20px;
+  }
+}
+
+.use-place {
+//   .one();
+  .one > .two(); 
+//   visibility: @one;
+  @detached-2();
+}
+
+// @one1: {
+//     @scope1: scope1;
+//     .one3(){
+//         @detached-2: {
+//             scope1: @scope1;
+//         };        
+//     }
+// };
+// .one2{
+//     @one1();
+//     .one3();
+//     @scope1: scope11;
+//     @detached-2();
+//     // color: @scope1;
+// }
+
+.clearfix {
+    display: block;
+    zoom: 1;
+    &:after {
+      content: " ";
+      display: block;
+      font-size: 0;
+      height: 0;
+      clear: both;
+      visibility: hidden;
+    }
+  }
+
+//非条件指令嵌套
+//   #a {
+//     color: blue;
+//     @font-face {
+//       src: made-up-url;
+//     }
+//     padding: 2 2 2 2;
+//   }
+
+//转义
+@conte: ~"^@//* */some horrible but needed css hack";
+.weird-element {
+    content: ~"^@{conte}//* */some horrible but needed css hack";
+    // content: @conte;
+  }
+
+//命名空间
+#bundle {
+    @black: black;
+    .button {
+      display: block;
+      border: 1px solid @black;
+      background-color: grey;
+      &:hover {
+        background-color: white
+      }
+    }
+  }
+  #header a {
+    color: orange;
+    #bundle > .button;
+  }
+
+  nav ul {
+    &:extend(.inline);
+    // background: blue;
+  }
+  div :extend(.inline all){
+      color: #000;
+  }
+  .inline.p {
+    color: red;
+  }
+  .inline .bb{
+      opacity: 1;
+  }
+  .inline {
+      color: #008000;
+  }
+  .inline, .aa {
+      width: 20px;
+  }
+
+  *.class {
+    color: blue;
+  }
+  .noStar:extend(.class) {} // this will NOT match the *.class selector
+
+  link:hover:visited {
+    color: blue;
+  }
+  .selector:extend(link:visited:hover) {}
+
+  :nth-child(1n+3) {
+    color: blue;
+  }
+  .child:extend(:nth-child(1n+3)) {}
+
+  [title=identifier] {
+    color: blue;
+  }
+  [title='identifier'] {
+    color: blue;
+  }
+  [title="identifier"] {
+    color: blue;
+  }
+  .noQuote:extend([title=identifier]) {}
+  .singleQuote:extend([title='identifier']) {}
+  .doubleQuote:extend([title="identifier"]) {}
+
+  @variable: .bucket;
+@{variable} { // interpolated selector
+  color: blue;
+}
+.some-class:extend(.bucket) {} // does nothing, no match is found
+
+// @variable: .bucket;
+// .bucket {
+//     color: blue;
+//   }
+//   .some-class:extend(@{variable}) {} // interpolated selector matches nothing
+
+// @variable: .selector;
+//   .bucket {
+//     color: blue;
+//   }
+//   @{variable}:extend(.bucket) {}
+
+// @media print {
+//     .screenClass:extend(.selector) {} // extend inside media
+//     .selector { // this will be matched - it is in the same media
+//       color: black;
+//     }
+//   }
+//   .selector { // ruleset on top of style sheet - extend ignores it
+//     color: red;
+//   }
+//   @media screen {
+//     .selector {  // ruleset inside another media - extend ignores it
+//       color: blue;
+//     }
+//   }
+
+//   @media screen {
+//     .screenClass:extend(.selector) {} // extend inside media
+//     @media (min-width: 1023px) {
+//       .selector {  // ruleset inside nested media - extend ignores it
+//         color: blue;
+//       }
+//     }
+//   }
+
+// @media screen {
+//     .selector {  /* ruleset inside nested media - top level extend works */
+//       color: blue;
+//     }
+//     @media (min-width: 1023px) {
+//       .selector {  /* ruleset inside nested media - top level extend works */
+//         color: blue;
+//       }
+//     }
+//   }
+  
+//   .topLevel:extend(.selector) {} /* top level extend matches everything */
+
+.alert-info,
+.widget {
+  /* declarations */
+}
+
+.alert:extend(.alert-info, .widget) {}
+
+// li.list > a {
+//     // list styles
+//     color: red;
+//   }
+  button.list-style {
+    &:extend(li.list > a); // use the same list styles
+  }
+
+  .mixin111 (@a) when (lightness(@a) =< 50%) {
+    background-color: black;
+  }
+  .mixin111 (@a) when (lightness(@a) < 50%) {
+    background-color: white;
+  }
+  .mixin111 (@a) {
+    color: @a;
+  }
+  .class1 { .mixin111(#ddd) }
+  .class2 { .mixin111(#555) }
+
+//下面两个混入是等价的
+.truth (@a) when (@a) { color: red}
+// .truth (@a) when (@a = true) { color: red }
+//关键字true以外的任何其他值都是假值
+.class111 {
+  .truth(true); // Will not match any of the above definitions.
+}
+
+@my-option : 4;
+// .my-optional-style() when (@my-option = true) {
+//     button {
+//       color: white;
+//     }
+//   }
+//   .my-optional-style();
+button when (@my-option = 4)  {
+    color: white;
+  } & when (@my-option = 4) {
+    button {
+      color: white;
+    }
+    a {
+      color: blue;
+    }
+  }
+
+
+  .loop(@counter) when (@counter > 0) {
+    .loop((@counter - 1));    // next iteration
+    width: (10px * @counter); // code for each iteration
+  }
+  div {
+    .loop(5); // launch the loop
+  }
+
+  .generate-columns(4);
+.generate-columns(@n, @i: 1) when (@i =< @n) {
+  .column-@{i} {
+    width: (@i * 100% / @n);
+  }
+  .generate-columns(@n, (@i + 1));
+}
+
+// .mixin() {
+//     box-shadow+: inset 0 0 10px #555;
+//   }
+//   .myclass {
+//     .mixin();
+//     box-shadow+: 0 0 20px black;
+//   }
+
+  .mixin() {
+    transform+_: scale(2);
+  }
+  .myclass {
+    .mixin();
+    transform+_: rotate(15deg);
+  }
+
+@50px: 50px;
+@min768: ~"(min-width:768px)";
+.home.zh{
+    #outer.inner();
+    img{
+        opacity: 0.5;
+        .borderSty(2px solid #ddd);
+    }
+    p{
+        .block;
+        width: calc(100% - @50px);
+        @media @min768 {
+            font-size: 20px;
+            a{
+                // @media (min-width: 1200px){
+                    font-size: 30px;
+                // }
+                span{
+                    font-size: 28px;
+                }
+            }
+        }
+        a{
+            &:hover{
+                color: aqua;
+            }
+            &:first-child{
+                font-size: 10px * 4px;
+            }
+            .borderSty();
+            .block;
+            @media (min-width: 768px){
+                font-size: 22px;
+            }
+        }
+    }
+    .p{
+        &-primary{ //&代表嵌套的父级选择器，可使用多个，&放在选择器后面可以将该选择器放到所有父级选择器前面
+            background: red;
+        }
+    }
+}
+.p-primary{
+    .home.zh &{
+        background: green;
+    }
+}

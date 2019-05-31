@@ -1,0 +1,1 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[2],{HP7r:function(o,e,n){"use strict";n.r(e),n.d(e,"printMe",function(){return t});var c=n("WgOm");function t(){console.log("i am called ee by output!"),console.log(Object(c.a)(3))}t(),console.log("this module has been loaded!")}},[["HP7r",0,1]]]);

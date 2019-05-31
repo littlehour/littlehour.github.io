@@ -1,7 +1,12 @@
-export function square(x){
-    return x*x;
-};
+/**
+ * 
+ * @license
+ * math.js
+ */
+// export function square(x){
+//     return x*x;
+// };
 
-export function cube(x){
-    return x*x*x;
+export default function cube(x){
+    return x*x;
 };

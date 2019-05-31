@@ -1,22 +1,9 @@
-/* @font-face{
-    font-family: 'my font';
-    src:url('./socicon.eot') format('eot'),
-        url('./socicon.ttf') format('ttf'),
-        url('./socicon.woff') format('woff'),
-        url('./socicon.woff2') format('woff2');
-} */
-
-.hello{
-    color:red;
-    font-family: 'my font';
-}
-
 .div{
-    widows: 200px;
+    width: 200px;
     height:200px;
     background-image: url(./ibeacon.png);
-}
+};
 
 body{
     background:bisque;
-}
+};

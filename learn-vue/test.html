@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>learn vue</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- <link rel="stylesheet" type="text/css" media="screen" href="main.css" /> -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.14.1/lodash.min.js"></script>
+    <style>  
+        .list-complete-item {
+            transition: all 8s;
+            display: inline-block;
+            margin-right: 10px;
+        }
+        .list-complete-enter, .list-complete-leave-to {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        /* .list-complete-leave-active {
+            position: absolute;
+        } */
+    </style>
+</head>
+<body>  
+    <div id="app">
+        <p>test data {{a}} {{b}}<button v-on:click="changeA">change a</button> <button v-on:click="changeB">change b</button></p>
+        <p>{{rawHtml}}</p>
+        <p v-html="rawHtml"></p>
+        <p>
+            <button v-bind:disabled="isDisabled1">disabled</button>
+            <button v-bind:disabled="isDisabled2">enabled</button>
+        </p>
+        <p><input type="text" v-model="message" /><span>reverse message:{{reversedMessage()}}</span></p>
+        <p><span>now:{{now()}}</span> <span>now1:{{now1}}</span></p>
+        <p><span>now:{{now()}}</span> <span>now1:{{now1}}</span></p>
+        <p><span>now:{{now()}}</span> <span>now1:{{now1}}</span></p>
+        <p>
+            <label for="first">firstName:</label><input id="first" v-model="firstName" type="text" />
+            <label for="last">lastName:</label><input id="last" v-model="lastName" type="text" />
+            <span>fullName:{{fullName}}</span>
+            <button v-on:click="setFullName">set fullName</button>
+        </p>
+        <p>
+            <button v-on:click="unshiftItem">unshift item</button>
+            <button @click="reverseItem">reverse item</button>
+            <button @click="insertItem">insert item</button>
+        </p>
+        <ul>
+            <li v-for="(item, index) in items">{{index}}:{{item}}</li>
+        </ul>
+        <p>
+            <button v-on:click="unshiftItem1">unshift item</button>
+            <button @click="reverseItem1">reverse item</button>
+            <button @click="insertItem1">insert item</button>
+        </p>
+        <ul>
+            <!-- <li v-for="(item, index) in items1" :key="item.id">{{item.id}}:{{item.text}}</li> -->
+
+            <li v-for="(item, index) in items1"><input type="text" /></li>
+        </ul>
+        <p>{{msg}}</p>
+        <div id="list-complete-demo" class="demo">
+            <!-- <button v-on:click="shuffle">Shuffle</button> -->
+            <button v-on:click="add">Add</button>
+            <button v-on:click="remove">Remove</button>
+            <transition-group name="list-complete" tag="p">
+                <span v-for="item in items2" v-bind:key="item" class="list-complete-item">
+                    {{item}}
+                </span>
+            </transition-group>
+        </div>
+        <anchored-heading :level="2">
+            <p>
+                <span>heii</span>
+                <span>hure</span>
+                <span>mewrr</span>
+            </p>
+        </anchored-heading>
+    </div>
+
+    <!-- <script type="x-template" id="mountDemo">
+
+    </script> -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script> -->
+
+    <script src="test.js"></script>
+
+    <!-- <script type="text/javascript">document.body.appendChild(document.createElement("div"))</script> -->
+</body>
+</html>

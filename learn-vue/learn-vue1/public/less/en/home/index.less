@@ -1,0 +1,23 @@
+.home.en{
+    img{
+        opacity: 0.5;
+    }
+    p{
+        a{
+            &:hover{
+                color: rosybrown;
+            }
+        }
+    }
+}
+@test-ruleset: {
+    test: @inner;
+    // width: @width;
+};
+.testReference {
+    color: blue;
+}
+li.list > a {
+    // list styles
+    color: red;
+  }
